@@ -1,28 +1,26 @@
-# iirose-scdn-upload
-IIRose 平台专用 SCDN（https://img.scdn.io/） 图床 图片上传 / 链接净化工具，自动处理图片上传、URL 修复
+## iirose-oss-upload
 
-使用请在iirose官网
-### **首先：打开左侧侧栏，选择"工具" > "终端"。**
+iirose 平台专用图片上传工具，支持 **iirose / SCDN / 自定义 OSS** 三种图床模式切换。
 
-### 然后：在终端中输入 js， 回车后在框内输入如下链接， 并点击确定。
-~~~javascript
-https://cdn.jsdelivr.net/gh/Lezhengan/iirose-scdn-upload@main/iirose-scdn-upload.js
-~~~
-开发已经完成了，目前设置的是首次打开与更新后必定设置为花园图床，需要您打开悬浮窗更改
-### 最后：等待载入成功后，页面右侧将自动显示悬浮控制图标，首次使用需确认用户协议。
+原插件：[iirose-scdn-upload](https://github.com/Lezhengan/iirose-scdn-upload/blob/main/README.md)
 
-点击面板右上角可收起/展开，支持切换图床模式、自定义主题色与透明度，所有设置自动保存。
+按照原插件的 README 食用即可
 
-由于第三方图床限制，图片 60 天无访问会自动删除，且为公开图床，隐私无法保证，请不要上传任何包含隐私的图片
+在原插件的基础上增加了对象存储的选项，采用 **AWS4-HMAC-SHA256** 签名算法，兼容 S3 协议的对象存储服务。
 
-******
-#
-#### 核心代码 → @Chara2580 猹
+另外添加了一个蓝色的右侧悬浮图标用于配置对象存储。
 
-核心代码可花园终端注入使用，无切换UI
+建议另外创建一个桶给图床本身用，上传的文件会按文件夹分类。
 
-~~~JavaScript
-https://cdn.jsdelivr.net/gh/Lezhengan/iirose-scdn-upload@main/SCDN-CORE-CODE.js
-~~~
+## OSS 配置说明
 
-本代码遵循*MIT*开源协议
+| 参数         | 说明     | 示例                                 |     |     |
+| ---------- | ------ | ---------------------------------- | --- | --- |
+| ENDPOINT   | API 端点 | `https://cn-xxx.rains3.com`        |     |     |
+| DOMAIN     | 访问域名   | `https://iirose.cn-xxx.rains3.com` |     |     |
+| ACCESS_KEY | 访问密钥   | 略                                  |     |     |
+| SECRET_KEY | 秘密密钥   | 略                                  |     |     |
+| BUCKET     | 桶名称    | `iirose`                           |     |     |
+
+![](https://iirose.cn-nb1.rains3.com/images/1780304761379_image.png)
+
