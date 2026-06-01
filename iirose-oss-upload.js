@@ -90,7 +90,7 @@ ${currentConfig.BUCKET || ''}`;
             z-index: 99999;
             width: var(--cap-w);             
             height: var(--cap-h);
-            background: rgba(0, 0, 0, 0.15); 
+            background: rgba(255, 255, 255, 0.15); 
             border-radius: 100px 0 0 100px; 
             display: flex; 
             align-items: center; 
