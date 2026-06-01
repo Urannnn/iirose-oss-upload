@@ -19,7 +19,7 @@ iirose 平台专用图片上传工具，支持 **iirose / SCDN / 自定义 OSS**
 | ENDPOINT   | API 端点 | `https://cn-xxx.rains3.com`        |     |     |
 | DOMAIN     | 访问域名   | `https://iirose.cn-xxx.rains3.com` |     |     |
 | ACCESS_KEY | 访问密钥   | 略                                  |     |     |
-| SECRET_KEY | 秘密密钥   | 略                                  |     |     |
+| SECRET_KEY | 安全访问密钥   | 略                                  |     |     |
 | BUCKET     | 桶名称    | `iirose`                           |     |     |
 
 ![](https://iirose.cn-nb1.rains3.com/images/1780304761379_image.png)
