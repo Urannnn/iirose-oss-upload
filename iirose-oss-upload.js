@@ -250,10 +250,31 @@ ${currentConfig.BUCKET || ''}`;
         return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
     };
 
+    const getFileCategory = (filename) => {
+        const ext = filename.split('.').pop().toLowerCase();
+        
+        const categories = {
+            images: ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'bmp', 'ico'],
+            docs: ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'md', 'rtf'],
+            archives: ['zip', 'rar', '7z', 'tar', 'gz', 'bz2'],
+            videos: ['mp4', 'webm', 'avi', 'mov', 'mkv', 'flv'],
+            audios: ['mp3', 'wav', 'ogg', 'flac', 'aac', 'm4a'],
+            executables: ['exe', 'msi', 'dmg', 'app', 'apk'],
+            code: ['js', 'ts', 'py', 'java', 'cpp', 'c', 'h', 'html', 'css', 'json', 'xml', 'yaml', 'yml']
+        };
+        
+        for (const [cat, exts] of Object.entries(categories)) {
+            if (exts.includes(ext)) return cat;
+        }
+        return 'others';
+    };
+
     const uploadToOSS = async (file) => {
         const oss = CONFIG.OSS;
         const timestamp = Date.now();
-        const filename = `images/${timestamp}_${file.name}`;
+        const safeName = file.name.replace(/\s+/g, '_');
+        const category = getFileCategory(safeName);
+        const filename = `${category}/${timestamp}_${safeName}`;
         const region = 'cn-nb1';
         const service = 's3';
         const algorithm = 'AWS4-HMAC-SHA256';
