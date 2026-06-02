@@ -20,6 +20,7 @@ iirose 平台专用图片上传工具，支持 **iirose / SCDN / 自定义 OSS**
 | ACCESS_KEY | 访问密钥   | 略                                  |     |     |
 | SECRET_KEY | 安全访问密钥   | 略                                  |     |     |
 | BUCKET     | 桶名称    | `iirose`                           |     |     |
+| REGION     | 地区(可选)    | `cn-xxx`                           |     |     |
 
 <img width="897" height="545" alt="image" src="https://github.com/user-attachments/assets/36a07366-7e65-4c51-8d04-500d73ff4c6a" />
 
