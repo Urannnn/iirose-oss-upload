@@ -275,21 +275,21 @@ ${currentConfig.BUCKET || ''}`;
         const safeName = file.name.replace(/\s+/g, '_');
         const category = getFileCategory(safeName);
         const filename = `${category}/${timestamp}_${safeName}`;
-        const region = 'cn-nb1';
         const service = 's3';
         const algorithm = 'AWS4-HMAC-SHA256';
-        
+
         const date = new Date();
         const amzDate = date.toISOString().replace(/[:\-]|\.\d+/g, '');
         const dateStamp = amzDate.slice(0, 8);
-        
+
         console.log('[OSS Upload] 配置:', oss);
         console.log('[OSS Upload] 文件名:', filename);
         console.log('[OSS Upload] AMZ Date:', amzDate);
-        
-        const credential = `${oss.ACCESS_KEY}/${dateStamp}/${region}/${service}/aws4_request`;
+
         const host = new URL(oss.ENDPOINT).host;
-        
+        const region = host.replace(/^cos\./, '').replace(/\.(myqcloud|rains3)\.com$/, '');
+        const credential = `${oss.ACCESS_KEY}/${dateStamp}/${region}/${service}/aws4_request`;
+
         const policy = JSON.stringify({
             expiration: new Date(Date.now() + 3600000).toISOString(),
             conditions: [
@@ -322,7 +322,7 @@ ${currentConfig.BUCKET || ''}`;
         fd.append('x-amz-signature', signature);
         fd.append('file', file, file.name);
         
-        const uploadUrl = `${oss.ENDPOINT}/${oss.BUCKET}`;
+        const uploadUrl = `https://${oss.BUCKET}.${host}`;
         console.log('[OSS Upload] 上传地址:', uploadUrl);
         
         const res = await fetch(uploadUrl, { 
