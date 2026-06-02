@@ -23,8 +23,12 @@ iirose 平台专用图片上传工具，支持 **iirose / SCDN / 自定义 OSS**
 
 ![](https://iirose.cn-nb1.rains3.com/images/1780304761379_image.png)
 
-##兼容性
+## 兼容性
+
 经测试雨云和腾讯云均可用
+
 地区是自动读取 endpoint 得到的
+
 腾讯云需要配置跨域规则(CORS)，如图：
+
 ！[](https://iirose.cn-nb1.rains3.com/images/1780388647763_image.png#e)
