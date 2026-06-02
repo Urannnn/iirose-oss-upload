@@ -21,7 +21,7 @@ iirose 平台专用图片上传工具，支持 **iirose / SCDN / 自定义 OSS**
 | SECRET_KEY | 安全访问密钥   | 略                                  |     |     |
 | BUCKET     | 桶名称    | `iirose`                           |     |     |
 
-![](https://iirose.cn-nb1.rains3.com/images/1780304761379_image.png)
+<img width="897" height="545" alt="image" src="https://github.com/user-attachments/assets/36a07366-7e65-4c51-8d04-500d73ff4c6a" />
 
 ## 兼容性
 
@@ -30,5 +30,4 @@ iirose 平台专用图片上传工具，支持 **iirose / SCDN / 自定义 OSS**
 地区是自动读取 endpoint 得到的
 
 腾讯云需要配置跨域规则(CORS)，如图：
-
-![](https://iirose.cn-nb1.rains3.com/images/1780388647763_image.png)
+<img width="953" height="1145" alt="image" src="https://github.com/user-attachments/assets/5c0fb6f7-9044-4574-b6a3-b5cf0fd50e1f" />
