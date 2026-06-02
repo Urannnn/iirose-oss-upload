@@ -26,9 +26,9 @@ iirose 平台专用图片上传工具，支持 **iirose / SCDN / 自定义 OSS**
 
 ## 兼容性
 
-经测试雨云和腾讯云均可用
+经测试雨云/七牛云/腾讯云均可用
 
-地区是自动读取 endpoint 得到的
+地区在不填写的情况下是自动读取 Endpoint 得到的
 
 腾讯云需要配置跨域规则(CORS)，如图：
 <img width="953" height="1145" alt="image" src="https://github.com/user-attachments/assets/5c0fb6f7-9044-4574-b6a3-b5cf0fd50e1f" />
