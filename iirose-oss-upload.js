@@ -12,7 +12,8 @@
             ACCESS_KEY: '',
             SECRET_KEY: '',
             BUCKET: '',
-            DOMAIN: ''
+            DOMAIN: '',
+            REGION: ''
         },
         MAX_FILE_SIZE: 20971520
     };
@@ -42,14 +43,16 @@
 
     const showOSSConfigDialog = () => {
         const currentConfig = CONFIG.OSS;
+        const currentRegion = currentConfig.REGION || '';
         const defaultText = `${currentConfig.ENDPOINT || ''}
 ${currentConfig.DOMAIN || ''}
 ${currentConfig.ACCESS_KEY || ''}
 ${currentConfig.SECRET_KEY || ''}
-${currentConfig.BUCKET || ''}`;
-        
+${currentConfig.BUCKET || ''}
+${currentRegion}`;
+
         if (typeof Utils !== 'undefined' && Utils.sync) {
-            Utils.sync(3, ['请输入OSS配置（每行一个）\n格式：\nENDPOINT\nDOMAIN\nACCESS_KEY\nSECRET_KEY\nBUCKET\n\n当前配置：\n' + defaultText], (input) => {
+            Utils.sync(3, ['请输入OSS配置（每行一个）\n格式：\nENDPOINT\nDOMAIN\nACCESS_KEY\nSECRET_KEY\nBUCKET\nREGION（可选，不填则自动从ENDPOINT提取）\n\n当前配置：\n' + defaultText], (input) => {
                 if (input && input.trim()) {
                     const lines = input.trim().split('\n').map(line => line.trim());
                     if (lines.length >= 5) {
@@ -58,7 +61,8 @@ ${currentConfig.BUCKET || ''}`;
                             DOMAIN: lines[1] || '',
                             ACCESS_KEY: lines[2] || '',
                             SECRET_KEY: lines[3] || '',
-                            BUCKET: lines[4] || ''
+                            BUCKET: lines[4] || '',
+                            REGION: lines[5] || ''
                         };
                         saveOSSConfig(newConfig);
                         _alert('OSS配置已保存！');
@@ -287,8 +291,11 @@ ${currentConfig.BUCKET || ''}`;
         console.log('[OSS Upload] AMZ Date:', amzDate);
 
         const host = new URL(oss.ENDPOINT).host;
-        const region = host.replace(/^cos\./, '').replace(/\.(myqcloud|rains3)\.com$/, '');
+        const cleanedHost = host.replace(/^(cos\.|oss\.|s3-|s3\.)/, '');
+        const extractedRegion = cleanedHost.split('.')[0];
+        const region = oss.REGION || extractedRegion;
         const credential = `${oss.ACCESS_KEY}/${dateStamp}/${region}/${service}/aws4_request`;
+        console.log('[OSS Upload] Region:', region);
 
         const policy = JSON.stringify({
             expiration: new Date(Date.now() + 3600000).toISOString(),
