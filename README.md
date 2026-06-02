@@ -1,5 +1,3 @@
-<img width="1257" height="1240" alt="image" src="https://github.com/user-attachments/assets/90638b4c-5be3-48e3-88d2-e7419daf54fa" /><img width="1257" height="1240" alt="image" src="https://github.com/user-attachments/assets/ac21e577-0411-4d1b-b6d0-cf85ffce3ddd" />## iirose-oss-upload
-
 iirose 平台专用图片上传工具，支持 **iirose / SCDN / 自定义 OSS** 三种图床模式切换。
 
 原插件：[iirose-scdn-upload](https://github.com/Lezhengan/iirose-scdn-upload/blob/main/README.md)
